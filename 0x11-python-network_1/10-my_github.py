@@ -19,4 +19,3 @@ if __name__ == "__main__":
         print(user_data.get("id"))
     except ValueError:
         print("None")
-
