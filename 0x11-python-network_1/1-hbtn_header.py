@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Takes in a URL, sends a request to the URL, and displays the value of the X-Request-Id variable found in the header of the response."""
+"""Displays value of X-Request-Id variable found in the response."""
 
 import urllib.request
 import sys
@@ -10,5 +10,3 @@ if __name__ == "__main__":
     with urllib.request.urlopen(url) as response:
         header_value = response.headers.get('X-Request-Id')
         print(header_value)
-
-

@@ -1,15 +1,22 @@
 #!/usr/bin/python3
-"""Fetches https://alx-intranet.hbtn.io/status and displays the response body."""
-
+"""
+Module that fetches https://intranet.hbtn.io/status
+"""
 import urllib.request
 
-if __name__ == "__main__":
-    url = "https://alx-intranet.hbtn.io/status"
+
+def fetch_status():
+    """
+    Fetch and print the body response from the given URL
+    """
+    url = 'https://alx-intranet.hbtn.io/status'
     with urllib.request.urlopen(url) as response:
-        body = response.read()
+        content = response.read()
         print("Body response:")
-        print("\t- type:", type(body))
-        print("\t- content:", body)
-        print("\t- utf8 content:", body.decode('utf-8'))
+        print("\t- type: {}".format(type(content)))
+        print("\t- content: {}".format(content))
+        print("\t- utf8 content: {}".format(content.decode('utf-8')))
 
 
+if __name__ == "__main__":
+    fetch_status()
