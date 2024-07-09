@@ -18,4 +18,3 @@ def find_peak(list_of_integers):
         return find_peak_util(nums, mid + 1, high)
 
     return find_peak_util(list_of_integers, 0, len(list_of_integers) - 1)
-
