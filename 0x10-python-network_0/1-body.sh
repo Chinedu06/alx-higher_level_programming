@@ -1,3 +1,3 @@
 #!/bin/bash
-# Sends a GET request to a URL and displays the body of the response if the status code is 200
-curl -s -o - -w "%{http_code}" "$1" | awk '/200$/{print x};{x=$0}'
+# Sends a GET request to the URL and displays the body of a 200 status code response
+response=$(curl -s -o /dev/stderr -w "%{http_code}" "$1"); [ "$response" -eq 200 ] && cat /dev/stderr

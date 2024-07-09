@@ -1,20 +1,35 @@
+#!/usr/bin/python3
+"""
+Module for finding a peak in a list of unsorted integers.
+"""
+
 def find_peak(list_of_integers):
-    """Find a peak element in the list."""
+    """
+    Finds a peak in a list of unsorted integers.
+
+    A peak element is an element that is greater than its neighbors.
+    For the elements at the boundaries, we only need to consider one neighbor.
+    
+    Args:
+        list_of_integers (list): List of unsorted integers.
+        
+    Returns:
+        int: A peak element, or None if the list is empty.
+    """
     if not list_of_integers:
         return None
+    
+    def find_peak_recursive(nums, left, right):
+        """
+        Helper function to find a peak using a binary search approach.
+        """
+        if left == right:
+            return nums[left]
+        mid = (left + right) // 2
+        if nums[mid] < nums[mid + 1]:
+            return find_peak_recursive(nums, mid + 1, right)
+        else:
+            return find_peak_recursive(nums, left, mid)
+    
+    return find_peak_recursive(list_of_integers, 0, len(list_of_integers) - 1)
 
-    def find_peak_util(nums, low, high):
-        mid = (low + high) // 2
-
-        # If mid is a peak
-        if (mid == 0 or nums[mid - 1] <= nums[mid]) and (mid == len(nums) - 1 or nums[mid + 1] <= nums[mid]):
-            return nums[mid]
-
-        # If the left neighbor is greater, move left
-        if mid > 0 and nums[mid - 1] > nums[mid]:
-            return find_peak_util(nums, low, mid - 1)
-
-        # Otherwise, move right
-        return find_peak_util(nums, mid + 1, high)
-
-    return find_peak_util(list_of_integers, 0, len(list_of_integers) - 1)
