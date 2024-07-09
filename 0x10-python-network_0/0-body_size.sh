@@ -1,4 +1,4 @@
 #!/bin/bash
-# Fetches the size of the body of the response from a URL
+# Script to get the size of the response body for a given URL
 curl -s "$1" | wc -c
 
