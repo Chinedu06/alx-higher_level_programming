@@ -1,9 +1,20 @@
 #!/usr/bin/python3
+"""
+Script to fetch the status from a URL
+"""
 import requests
 
-if __name__ == "__main__":
-    url = "https://alx-intranet.hbtn.io/status"
+
+def fetch_status(url):
+    """
+    Fetch the status from the provided URL and display the response
+    """
     response = requests.get(url)
+    content = response.text
     print("Body response:")
-    print(f"\t- type: {type(response.text)}")
-    print(f"\t- content: {response.text}")
+    print("\t- type: {}".format(type(content)))
+    print("\t- content: {}".format(content))
+
+
+if __name__ == "__main__":
+    fetch_status("https://alx-intranet.hbtn.io/status")
