@@ -1,21 +1,32 @@
 #!/usr/bin/python3
+"""
+Takes your GitHub credentials and uses the GitHub API to display your id.
+
+Usage:
+./10-my_github.py <username> <personal_access_token>
+"""
 import requests
 import sys
 
-if __name__ == "__main__":
-    # Get GitHub credentials from command line arguments
-    username = sys.argv[1]
-    token = sys.argv[2]
 
-    # GitHub API URL
-    url = "https://api.github.com/user"
-
-    # Send GET request with Basic Authentication
+def fetch_github_id(username, token):
+    """
+    Fetches and displays the GitHub ID using the provided details
+    """
+    url = f"https://api.github.com/user"
     response = requests.get(url, auth=(username, token))
 
-    # Parse and display the user ID from the JSON response
     try:
-        user_data = response.json()
-        print(user_data.get("id"))
+        json_response = response.json()
+        print(json_response.get('id'))
     except ValueError:
         print("None")
+
+
+if __name__ == "__main__":
+    if len(sys.argv) != 3:
+        print("Usage: ./10-my_github.py <username> <personal_access_token>")
+    else:
+        username = sys.argv[1]
+        token = sys.argv[2]
+        fetch_github_id(username, token)
